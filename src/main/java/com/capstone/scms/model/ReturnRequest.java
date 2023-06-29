@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+
 @Entity
 @Getter
 @Setter
@@ -19,11 +20,17 @@ public class ReturnRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Product product;
+    private String productName;
+
+    private Long productId;
+
+    private Long orderId;
+
+    private Double productPrice;
+
+    private Integer productQuantity;
 
     private String reason;
 
-    @ManyToOne
-    private User user;
+    private String email;
 }

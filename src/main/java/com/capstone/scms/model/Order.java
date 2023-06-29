@@ -28,10 +28,17 @@ public class Order {
     private Double totalPrice;
 
     @Column(name = "status")
-    private String status;
+    private String status = "pending";
 
-    @Lob
-    private String productOrderedList;
+    private Integer quantity;
+
+    private Long productId;
+
+    private String productName;
+
+    private String productDescription;
+
+    private Double productPrice;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToOne

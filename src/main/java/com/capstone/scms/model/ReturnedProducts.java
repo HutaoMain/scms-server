@@ -1,5 +1,6 @@
 package com.capstone.scms.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,18 +16,27 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "shipment")
-public class Shipment {
+@Table(name = "returned_products")
+public class ReturnedProducts {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private Order order;
+    private String name;
 
-    private String status;
+    private String description;
+
+    private Double price;
+
+    private Integer quantity;
+
+    private Long categoryId;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    @JoinColumn(name = "return_request_id", referencedColumnName = "id")
+    private ReturnRequest returnedRequest;
 
     @CreationTimestamp
     private LocalDateTime createdDate;
